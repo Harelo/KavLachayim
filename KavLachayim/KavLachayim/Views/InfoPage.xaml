@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="KavLachayim.Views.InfoPage"
+             Title="{Binding PageTitle}" >
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <cv:CarouselViewControl x:Name="CV" Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0, 0, 1, .92" AbsoluteLayout.LayoutFlags="All" 
+                             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding ContentsCollection}" Position="{Binding CVPosition}">
+                <cv:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="Start">
+                            <Frame HasShadow="True">
+                                <Frame.Content>
+                                    <Label TextColor="{StaticResource KLColor}" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" Text="{Binding Title}" />
+                                </Frame.Content>
+                            </Frame>
+                            <ScrollView>
+                                <Label HorizontalTextAlignment="Center" FontSize="Medium" Text="{Binding Content}" Margin="5" />
+                            </ScrollView>
+                        </StackLayout>
+                    </DataTemplate>
+                </cv:CarouselViewControl.ItemTemplate>
+            </cv:CarouselViewControl>
+            <custom:CarouselViewItemIndicator IndicatorColor="{StaticResource KLColor}" Carousel="{x:Reference CV}" AbsoluteLayout.LayoutBounds="0, .985, 1, .05" AbsoluteLayout.LayoutFlags="All" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

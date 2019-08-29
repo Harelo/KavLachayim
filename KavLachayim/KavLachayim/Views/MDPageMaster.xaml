@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             x:Class="KavLachayim.Views.MDPageMaster"
+             Title="Master"
+             BackgroundColor="White">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="Default"
+              SeparatorColor="#C0C0C0"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}">
+            <ListView.Header>
+                <custom:GradientFrame StartColor="#a8151a" EndColor="#e73c42">
+                    <Image Source="logo_white.png" HeightRequest="100" Aspect="AspectFit" />
+                    <!--<custom:TapContainer Command="{StaticResource OpenPageCommand}" CommandParameter="LoginPage">
+                        <Label HorizontalTextAlignment="Center" Text="היכנס כמשתמש רשום" TextColor="White" FontSize="Medium" FontAttributes="Bold" />
+                    </custom:TapContainer>-->
+                </custom:GradientFrame>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Margin="10,15" VerticalOptions="FillAndExpand" 
+                    VerticalTextAlignment="Center" 
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Description}" 
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource KLColor}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

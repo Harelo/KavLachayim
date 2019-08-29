@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="KavLachayim.Views.ContactUsPage">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="labelStyle">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Margin="5">
+                <Label HorizontalTextAlignment="Center" Text="קו לחיים" FontSize="30" TextColor="{StaticResource KLColor}" FontAttributes="Bold" />
+                <Label Text="{Binding GeneralInfo}" HorizontalTextAlignment="Center" FontSize="16" LineBreakMode="CharacterWrap" />
+
+                <BoxView BackgroundColor="#C0C0C0" HeightRequest="1" />
+
+                <cv:CarouselViewControl x:Name="CV" ItemsSource="{Binding ContactUsPageCD}" HeightRequest="150" Orientation="Horizontal" Position="3" >
+                    <cv:CarouselViewControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" >
+                                <Label Text="{Binding BranchName}" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource KLColor}" HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding PhoneNumber}" Style="{StaticResource labelStyle}" />
+                                <Label Text="{Binding StreetName}" Style="{StaticResource labelStyle}" />
+                                <Label Text="{Binding Email}" Style="{StaticResource labelStyle}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </cv:CarouselViewControl.ItemTemplate>
+                </cv:CarouselViewControl>
+                <custom:CarouselViewItemIndicator IndicatorColor="{StaticResource KLColor}" Carousel="{x:Reference CV}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

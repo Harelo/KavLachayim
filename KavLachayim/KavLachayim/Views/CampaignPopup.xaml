@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             x:Class="KavLachayim.Views.CampaignPopup">
+    <popup:PopupPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByDefinedName" ViewModelName="CampaignsViewModel" />
+    </popup:PopupPage.Behaviors>
+
+    <popup:PopupPage.Content>
+        <Frame CornerRadius="10">
+            <Frame.Margin>
+                <OnIdiom x:TypeArguments="Thickness" Phone="30,60,30,60" Tablet="60,120,60,120" />
+            </Frame.Margin>
+            <StackLayout Orientation="Vertical" WidthRequest="{StaticResource CommonSLWidth}" HeightRequest="{StaticResource CommonSLHeight}">
+                <Image Source="{Binding SelectedCampaign.DisplayImage, Converter={StaticResource BinaryToImageConverter}}" Aspect="AspectFit" WidthRequest="{StaticResource CommonImageWidth2}" HeightRequest="{StaticResource CommonImageHeight2}" />
+                <Label Text="{Binding SelectedCampaign.Title}" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                <ScrollView>
+                    <StackLayout>
+                        <Label TextColor="{StaticResource KLColor}" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold" LineBreakMode="CharacterWrap" 
+                               Text="{Binding SelectedCampaign.FinishedReason}" 
+                               IsEnabled="{Binding SelectedCampaign.Finished}"
+                               IsVisible="{Binding SelectedCampaign.Finished}" />
+                        <custom:TapContainer Command="{Binding ViewImage}">
+                            <Image Source="{Binding SelectedCampaign.ContentImage, Converter={StaticResource BinaryToImageConverter}}" />
+                        </custom:TapContainer>
+                        <Label LineBreakMode="CharacterWrap" Text="{Binding SelectedCampaign.Content}" FontSize="Small" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </ScrollView>
+                <Button x:Name="DonateButton" Text="לחצו לתרומה" TextColor="White" BackgroundColor="{StaticResource KLColor}"
+                                            Command="{Binding DonateCommand}"
+                                            CommandParameter="{Binding SelectedCampaign.ID}"
+                                            IsEnabled="{Binding SelectedCampaign.Finished, Converter={StaticResource InvertBoolConverter}}"
+                                            IsVisible="{Binding SelectedCampaign.Finished, Converter={StaticResource InvertBoolConverter}}"/>
+            </StackLayout>
+        </Frame>
+    </popup:PopupPage.Content>
+</popup:PopupPage>

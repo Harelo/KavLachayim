@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             x:Class="KavLachayim.Views.ThanksPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnIdiom x:Key="LocalImageDimensions" x:TypeArguments="x:Double" Phone="150" Tablet="300" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Margin="5,0,5,0" FontSize="Medium" Text="עמוד התווך של עמותת קו לחיים הוא אלפי התורמים ועשרות החברות המסייעים לעמותה להמשיך להעניק לילדים את מה שמגיע להם 
+משרדי ממשלה | חברות | רשויות מקומיות" Style="{StaticResource titleStyle}" HorizontalTextAlignment="Center" />
+            <ScrollView Orientation="Horizontal">
+                <custom:RepeatingStackLayout Orientation="Horizontal" ItemsSource="{Binding ImagesCollection}">
+                    <custom:RepeatingStackLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImageSource, Converter={StaticResource BinaryToImageConverter}}" Aspect="AspectFit" HeightRequest="{StaticResource LocalImageDimensions}" />
+                        </DataTemplate>
+                    </custom:RepeatingStackLayout.ItemTemplate>
+                </custom:RepeatingStackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

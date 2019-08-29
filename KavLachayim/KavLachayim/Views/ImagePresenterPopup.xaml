@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             CloseWhenBackgroundIsClicked="False"
+             x:Name="ThisPage"
+             x:Class="KavLachayim.Views.ImagePresenterPopup">
+    <popup:PopupPage.Content>
+        <AbsoluteLayout x:Name="AL">
+            <custom:ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" x:Name="SV" Orientation="Both" ScrollBars="None">
+                <Image x:Name="PresentedImage" WidthRequest="{Binding Source={x:Reference SV}, Path=Width}" HeightRequest="{Binding Source={x:Reference SV}, Path=Height}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped" NumberOfTapsRequired="2" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </custom:ScrollView>
+            <Image AbsoluteLayout.LayoutBounds=".01,.01,20,20" AbsoluteLayout.LayoutFlags="PositionProportional" Source="exit.png" Aspect="AspectFit">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{StaticResource ClosePopupCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </popup:PopupPage.Content>
+</popup:PopupPage>

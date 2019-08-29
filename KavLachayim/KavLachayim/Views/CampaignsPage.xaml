@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             x:Class="KavLachayim.Views.CampaignsPage"
+             Title="קמפיינים מצילי חיים">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByDefinedName" ViewModelName="CampaignsViewModel" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <custom:RepeatingGridLayout x:Name="Campaigns" Margin="5" ItemsSource="{Binding CampaignsCollection}">
+                    <custom:RepeatingGridLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame IsClippedToBounds="True" Margin="5" Padding="10" OutlineColor="Black">
+                                <StackLayout Orientation="Vertical" WidthRequest="{StaticResource CommonSLWidth}" HeightRequest="{StaticResource CommonSLHeight}">
+                                    <Image Source="{Binding DisplayImage, Converter={StaticResource BinaryToImageConverter}}" Aspect="AspectFit" WidthRequest="{StaticResource CommonImageWidth2}" HeightRequest="{StaticResource CommonImageHeight2}" />
+                                    <Label Text="{Binding Title}" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </custom:RepeatingGridLayout.ItemTemplate>
+                    <custom:RepeatingGridLayout.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ViewCampaignCommand}" />
+                    </custom:RepeatingGridLayout.Behaviors>
+                </custom:RepeatingGridLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

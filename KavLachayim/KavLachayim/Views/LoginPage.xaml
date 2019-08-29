@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             x:Class="KavLachayim.Views.LoginPage">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <custom:GradientFrame StartColor="#a8151a" EndColor="#e73c42">
+            <custom:GradientFrame.Content>
+                <AbsoluteLayout>
+                    <Image Source="logo_white.png" AbsoluteLayout.LayoutBounds="1,0,75,75" AbsoluteLayout.LayoutFlags="PositionProportional"  Aspect="AspectFit" />
+                    <custom:TapContainer Command="{StaticResource ClosePageCommand}" AbsoluteLayout.LayoutBounds="0, .005, 20, 20" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Image Source="exit.png" Aspect="AspectFit" />
+                    </custom:TapContainer>
+                    <StackLayout AbsoluteLayout.LayoutBounds=".5,.5,1,1" AbsoluteLayout.LayoutFlags="All" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Entry Placeholder="שם משתמש" WidthRequest="150" HeightRequest="50" HorizontalTextAlignment="Center" 
+                           TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Username,Mode=OneWayToSource}" />
+                        <Entry Placeholder="סיסמא" IsPassword="True" WidthRequest="150" HeightRequest="50" HorizontalTextAlignment="Center"
+                           TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Password,Mode=OneWayToSource}" />
+                        <Button Text="היכנס" MinimumWidthRequest="150" MinimumHeightRequest="50" TextColor="Black" BackgroundColor="#f5f5f5"
+                            BorderRadius="40"  HorizontalOptions="Center" VerticalOptions="Center" Command="{Binding LoginCommand}" />
+                        <Label x:Name="LoginStatus" Text="{Binding LoginStatus}" WidthRequest="500" LineBreakMode="NoWrap" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </AbsoluteLayout>
+            </custom:GradientFrame.Content>
+        </custom:GradientFrame>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             x:Class="KavLachayim.Views.EmployeesPopup">
+    <popup:PopupPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </popup:PopupPage.Behaviors>
+
+    <popup:PopupPage.Content>
+        <Frame CornerRadius="10">
+            <Frame.Margin>
+                <OnIdiom x:TypeArguments="Thickness" Phone="30,60,30,60" Tablet="60,120,60,120" />
+            </Frame.Margin>
+            <ScrollView>
+                <custom:RepeatingStackLayout ItemsSource="{Binding EmployeesCollection}">
+                    <custom:RepeatingStackLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Image Source="{Binding Image, Converter={StaticResource BinaryToImageConverter}}" Aspect="AspectFit"
+                                       WidthRequest="{StaticResource CommonImageDimensions1}" HeightRequest="{StaticResource CommonImageDimensions1}" />
+                                <Label Text="{Binding Name}" TextColor="{StaticResource KLColor}" FontSize="Small" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                                <Label Text="{Binding JobDescription}" HorizontalTextAlignment="Center" FontSize="Small" />
+                                <BoxView BackgroundColor="#C0C0C0" HeightRequest="2" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </custom:RepeatingStackLayout.ItemTemplate>
+                </custom:RepeatingStackLayout>
+            </ScrollView>
+        </Frame>
+    </popup:PopupPage.Content>
+</popup:PopupPage>

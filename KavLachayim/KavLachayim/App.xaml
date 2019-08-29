@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:command="clr-namespace:KavLachayim.Commands"
+             xmlns:converter="clr-namespace:KavLachayim.Converters"
+             x:Class="KavLachayim.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Colors-->
+            <Color x:Key="KLColor">#D71A21</Color>
+
+            <!--Commands-->
+            <command:ClosePageCommand x:Key="ClosePageCommand" />
+            <command:ClosePopupCommand x:Key="ClosePopupCommand" />
+            <command:OpenWebPageCommand x:Key="OpenWebPageCommand" />
+            <command:OpenPageCommand x:Key="OpenPageCommand" />
+
+            <!--Converters-->
+            <converter:UrlToTitleConverter x:Key="UrlToTitleConverter" />
+            <converter:BinaryToImageConverter x:Key="BinaryToImageConverter" />
+            <converter:InvertBoolConverter x:Key="InvertBoolConverter" />
+
+            <!--Styles-->
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            <Style TargetType="Label" x:Key="titleStyle">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource KLColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <!--OnIdioms-->
+            <OnIdiom x:Key="CommonImageDimensions1" x:TypeArguments="x:Double" Phone="100" Tablet="200" />
+            <OnIdiom x:Key="CommonImageWidth2" x:TypeArguments="x:Double" Phone="40" Tablet="100" />
+            <OnIdiom x:Key="CommonImageHeight2" x:TypeArguments="x:Double" Phone="80" Tablet="200" />
+            <OnIdiom x:Key="CommonSLWidth" x:TypeArguments="x:Double" Phone="100" Tablet="250" />
+            <OnIdiom x:Key="CommonSLHeight" x:TypeArguments="x:Double" Phone="150" Tablet="375" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

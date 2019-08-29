@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             x:Class="KavLachayim.Views.AboutPage">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <custom:RepeatingStackLayout ItemsSource="{Binding AboutUsInfoCollection}" x:Name="AboutContentLayout">
+                    <custom:RepeatingStackLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Title}" Margin="5,0,5,0" Style="{StaticResource titleStyle}" />
+                                <Label Text="{Binding Content}" Margin="5,0,5,0" HorizontalTextAlignment="Center" FontSize="Medium" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </custom:RepeatingStackLayout.ItemTemplate>
+                </custom:RepeatingStackLayout>
+                <custom:TapContainer Command="{Binding OpenEmployeesListCommand}">
+                    <Label FontAttributes="Bold" Text="לחצו כדי להכיר את הצוות מקרוב >>>" FontSize="Medium" HorizontalTextAlignment="End" HorizontalOptions="Center" />
+                </custom:TapContainer>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

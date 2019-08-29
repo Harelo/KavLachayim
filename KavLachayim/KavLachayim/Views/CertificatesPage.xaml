@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KavLachayim.Views.CertificatesPage"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <Label Margin="5,5,5,0" Text="טפסים להורדה" Style="{StaticResource titleStyle}" />
+            <ListView x:Name="FormsListView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ItemsSource="{Binding FormsCollection}" SeparatorVisibility="Default" SeparatorColor="#C0C0C0" SelectedItem="{Binding SelectedForm}" ItemSelected="ClearFormsListViewSelectedItem">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <BoxView HeightRequest="2" Color="#C0C0C0" Margin="5" />
+
+            <Label Margin="5,0,5,0" Text="אישורי עמותה ודו&quot;חות" Style="{StaticResource titleStyle}" />
+            <ListView x:Name="ApprovalFormsListView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding ApprovalFormsCollection}" SeparatorVisibility="Default" SeparatorColor="#C0C0C0" SelectedItem="{Binding SelectedApprovalForm}" ItemSelected="ClearApprovalFormsListViewSelectedItem">
+                <ListView.Header>
+                    <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span ForegroundColor="Black" Text="עמותת &quot;קו לחיים&quot; מצליחה לקיים את פעילותה הנפלאה ע&quot;י תרומתם של גופים עיסקיים ואנשים פרטיים רבים.
+כמעט 100% מתקציבה של העמותה מתבסס על תרומתכם, אי לכך אנו רואים בשקיפות כספית מלאה חלק בלתי נפרד מחובתינו למקצוענות, לכנות ולאמון המלא שהציבור נותן בנו, כדי שנשכיל להשתמש בכספי התרומות בצורה היעילה ביותר ונמשיך ולהעניק סיוע התנדבותי מקיף לרווחת 1,380 ילדים חולים ברחבי הארץ ללא הבדלי דת, גזע ולאום. &#x0a;&#x0a;" />
+                                <Span ForegroundColor="{StaticResource KLColor}" Text="לנוחיותכם מצ&quot;ב מסמכי העמותה המעידים על פעילותה התקינה:" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

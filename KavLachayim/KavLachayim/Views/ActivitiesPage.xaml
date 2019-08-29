@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:helpers="clr-namespace:KavLachayim.Helpers"
+             x:Class="KavLachayim.Views.ActivitiesPage">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <custom:RepeatingStackLayout x:Name="ActivitiesContentLayout" ItemsSource="{Binding ActivitiesCollection}">
+                <custom:RepeatingStackLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" Margin="5,0,5,0" Style="{StaticResource titleStyle}" />
+                            <Label Text="{Binding Content}" Margin="5,0,5,0" FontSize="Medium" HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </custom:RepeatingStackLayout.ItemTemplate>
+            </custom:RepeatingStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

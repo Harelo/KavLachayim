@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+            x:Class="KavLachayim.Views.DonateTabbedPage"
+            BarBackgroundColor="White"
+            BarTextColor="Black">
+
+    <TabbedPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </TabbedPage.Behaviors>
+
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <ContentPage Icon="idcreditcard.png" Title="אשראי">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="Center">
+                <Image Source="dcreditcard.png" Aspect="AspectFit" />
+                <Entry Placeholder="סכום לתרומה" HorizontalTextAlignment="End" Keyboard="Numeric" Text="{Binding DonationAmount, Mode=OneWayToSource}" />
+                <Picker Title="לחץ לבחירת סוג מטבע" SelectedIndex="{Binding DonationCurrency, Mode=OneWayToSource}" >
+                    <Picker.Items>
+                        <x:String>שקל</x:String>
+                        <x:String>דולר</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker ItemsSource="{Binding DonateToOptions}" Title="לחץ לבחירת נמען לתרומה" SelectedItem="{Binding CampaignTitle, Mode=OneWayToSource}" SelectedIndex="{Binding ChosenDonateToIndex, Mode=TwoWay}" />
+                <Button Text="לדף המאובטח" Command="{Binding OpenDonatePageCommand}" TextColor="White" BackgroundColor="{StaticResource KLColor}" />
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Icon="idphone.jpg" Title="טלפון">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="Center">
+                <Image Source="dphone.jpg" Aspect="AspectFit" />
+                <Label Text="{Binding DonationOptionsData[0].Content}" Style="{StaticResource labelStyle}" />
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Icon="idcheck.png" Title="המחאה">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="Center">
+                <Image Source="dcheck.png" Aspect="AspectFit" />
+                <Label Text="{Binding DonationOptionsData[1].Content, Mode=OneWay}" Style="{StaticResource labelStyle}" />
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Icon="idbanktransfer.png" Title="העברה">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="Center">
+                <Image Source="dbanktransfer.png" Aspect="AspectFit" />
+                <Label Text="{Binding DonationOptionsData[2].Content, Mode=OneWay}" Style="{StaticResource labelStyle}" />
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+</TabbedPage>

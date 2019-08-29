@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             x:Class="KavLachayim.Views.ArticlesAboutUs"
+             x:Name="ThisPage">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <ListView x:Name="ArticlesListView" SeparatorVisibility="Default" SeparatorColor="#C0C0C0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasUnevenRows="True" ItemsSource="{Binding ArticlesCollection}" ItemSelected="ClearArticlesListViewSelectedItem" SelectedItem="{Binding SelectedArticle}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Margin="5,0,5,0">
+                                <Label Text="{Binding Title}" TextColor="{StaticResource KLColor}" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="Center" />
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Image Source="{Binding Image, Converter={StaticResource BinaryToImageConverter}}" Aspect="AspectFit" WidthRequest="{StaticResource CommonImageDimensions1}" HeightRequest="{StaticResource CommonImageDimensions1}" />
+                                    <Label Text="{Binding Description}" HorizontalTextAlignment="End" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

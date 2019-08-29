@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:KavLachayim.Behaviors"
+             xmlns:local="clr-namespace:KavLachayim"
+             xmlns:views="clr-namespace:KavLachayim.Views"
+             xmlns:viewmodels="clr-namespace:KavLachayim.ViewModels"
+             xmlns:custom="clr-namespace:KavLachayim.Controls"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="KavLachayim.MainPage">
+    <ContentPage.Behaviors>
+        <behaviors:ViewModelBinderBehavior BinderBindingMode="ByViewName" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource KLColor}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="60" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".4*" />
+                <RowDefinition>
+                    <RowDefinition.Height>
+                        <OnIdiom x:TypeArguments="GridLength" Tablet=".2*" Phone=".3*" />
+                    </RowDefinition.Height>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Height>
+                        <OnIdiom x:TypeArguments="GridLength" Tablet=".4*" Phone=".3*" />
+                    </RowDefinition.Height>
+                </RowDefinition>
+            </Grid.RowDefinitions>
+
+            <cv:CarouselViewControl ItemsSource="{Binding MainPageCD}" Position="{Binding CVPosition}" Grid.Row="0">
+                <cv:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <custom:TapContainer Command="{Binding InfoImgTapCommand}" CommandParameter="{Binding OnClickParameter}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.RowSpan="2" Source="{Binding ImageSource}" Aspect="Fill" />
+                                <StackLayout Grid.Row="1" BackgroundColor="#80000000">
+                                    <Label Text="לחץ על התמונה למידע נוסף" TextColor="White" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
+                            </Grid>
+                        </custom:TapContainer>
+                    </DataTemplate>
+                </cv:CarouselViewControl.ItemTemplate>
+            </cv:CarouselViewControl>
+
+            <StackLayout Grid.Row="1" Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Button HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="להצלת חיים" Style="{StaticResource buttonStyle}" Image="savelives.png" Command="{Binding OpenDetailPageCommand}" CommandParameter="CampaignsPage" />
+                    <Button HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="להתנדבות" Style="{StaticResource buttonStyle}" Image="volunteer.png" Command="{StaticResource OpenWebPageCommand}"
+                        CommandParameter="https://docs.google.com/forms/d/e/1FAIpQLSfhfbjQAxYQzHv3hfj2sRW6bklkLYl8XLAmECTVp97eJErSXw/viewform?embedded=true" />
+                </StackLayout>
+                <Button HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="לתרומות" Style="{StaticResource buttonStyle}" Image="donations.png" Command="{Binding OpenDetailPageCommand}" CommandParameter="DonateTabbedPage" />
+            </StackLayout>
+
+            <WebView x:Name="WV" Grid.Row="2" Source="https://www.youtube.com/embed/hNulzmmv-4o" />
+            <ActivityIndicator x:Name="Loading" IsRunning="True" Color="Red" Grid.Row="2" HorizontalOptions="CenterAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
