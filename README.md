@@ -1,4 +1,4 @@
-<h1><b>KavLachayim mobile app</h1></b>
+<h1><b>KavLachayim's mobile app</h1></b>
 
 KavLahcyim is a project I made for the organization for which I've done my national service.<br/>
 This project was written in C# using the .NET framework (Specifically Xamarin.Forms) with the MVVM architectual-pattern in mind, and is currently only working for Android.<br/>
